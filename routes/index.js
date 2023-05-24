@@ -4,7 +4,7 @@ const router = express.Router();
 const date = new Date();
 const currentDate = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`;
 
-const messages = [
+let messages = [
     {
       text: "Hi there!",
       user: "Amando",
@@ -21,5 +21,16 @@ const messages = [
 router.get("/", function (req, res, next) {
   res.render("index", { title: "Mini Messageboard", messages });
 });
+
+router.post('/new', (req, res, next) => {
+  const newMessage = {
+    text: req.body.text,
+    user: req.body.user,
+    added: currentDate
+  } 
+  console.log(newMessage);
+  messages.push(newMessage);
+  res.redirect('/');
+})
 
 module.exports = router;
