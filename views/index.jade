@@ -1,0 +1,6 @@
+extends layout
+
+block content
+  h1= title 
+  each message, i in messages
+    p= message.text + " " + message.user + " " + message.added
